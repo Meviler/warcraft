@@ -1,0 +1,138 @@
+import random, os, time
+from replit import audio
+# from playsound import playsound
+
+def randomdice(side):
+  result = random.randint(1,side)
+  return result
+
+def health():
+  healthstat = (randomdice(6)*randomdice(6))+200
+  return healthstat
+
+def strength():
+  strengthstat = (randomdice(6)*randomdice(6))+200
+  return strengthstat
+
+source = audio.play_file("champion-80bpm-132686.wav")
+time.sleep(0.7)
+print("""\33[1;36m░▒█░░▒█░▒█▀▀▀░▒█░░░░▒█▀▀▄░▒█▀▀▀█░▒█▀▄▀█░▒█▀▀▀
+░▒█▒█▒█░▒█▀▀▀░▒█░░░░▒█░░░░▒█░░▒█░▒█▒█▒█░▒█▀▀▀
+░▒▀▄▀▄▀░▒█▄▄▄░▒█▄▄█░▒█▄▄▀░▒█▄▄▄█░▒█░░▒█░▒█▄▄▄\n""")
+time.sleep(0.7)
+print("""\33[1;34m░▀█▀░▄▀▀▄
+░░█░░█░░█
+░░▀░░░▀▀░\n""")
+time.sleep(0.7)
+print("""\33[1;35m░█▀▄▀█░█░░█░░░█░░░█░▄▀▀▄░█▀▀▄░█░░█▀▄
+░█░▀░█░█▄▄█░░░▀▄█▄▀░█░░█░█▄▄▀░█░░█░█
+░▀░░▒▀░▄▄▄▀░░░░▀░▀░░░▀▀░░▀░▀▀░▀▀░▀▀░\33[0m""")
+range_count = random.randint(1, 10)
+sleep_time = random.uniform(0, 1)
+
+for i in range(range_count):
+  print("\33[1;30mLoading...",i,)
+  time.sleep(sleep_time)
+  os.system("clear")
+  print("\33[0m")
+
+print("CREATE YOUR WARCRAFT CHARACTER")
+print("PLAYER 1 ORCS")
+player1 = input("Enter ORCS name: ")
+type1 = input("Your ORCS Professions: ")
+print()
+p1health = health()
+p1strength = strength()
+print("NAME: ",player1.upper())
+print("MASTER: ",type1.upper())
+print("HEALTH: ",p1health)
+print("STRENGTH: ",p1strength)
+print()
+  
+input("\33[1;32m press ENTER\33[0m\n")
+time.sleep(0.5)
+os.system("clear")
+print()
+print("CREATE YOUR WARCRAFT CHARACTER")
+print("PLAYER 2 HUMANS")
+player2 = input("Enter HUMANs name: ")
+type2 = input("Your HUMANS Professions: ")
+print()
+p2health = health()
+p2strength = strength()
+print("NAME: ",player2.upper())
+print("MASTER: ",type2.upper())
+print("HEALTH: ",p2health)
+print("STRENGTH: ",p2strength)
+print()
+
+input("\33[1;32m press ENTER\33[0m\n")
+time.sleep(0.7)
+os.system("clear")
+
+round = 1
+winner = None
+while True:
+  time.sleep(0.8)
+  os.system("clear")
+  print("THE BATTLE FOR SURVIVAL BEGINS !! ")
+  print()
+  player1Roll = randomdice(6)
+  player2Roll = randomdice(6)
+  
+  fight = abs(p1strength - p2strength)+1
+  
+  if player1Roll > player2Roll:
+    p2health -= fight
+    p2strength -= fight
+    if round == 1:
+      print(player1," Win the First blow!!")
+    else :
+      print(player1," Win",round)
+  elif player2Roll > player1Roll:
+    p1health -= fight
+    p1strength -= fight
+    if round == 1:
+      print(player2," Win the First blow!!")
+    else :
+      print(player2," Win",round)
+  else:
+    print("Both are tie!! Draw round!")  
+  print()
+  print(player1.upper(),type1.upper())
+  print("HEALTH: ",p1health)
+  print("STRENGTH: ",p1strength)
+  print()
+  print(player2.upper(),type2.upper())
+  print("HEALTH: ",p2health)
+  print("STRENGTH: ",p2strength)
+  print()
+
+  if p1health <= 0:
+    print(player1, "Has died!")
+    winner = player2
+    break
+  elif p2health <= 0:
+    print(player2, "HAs died!")
+    winner = player1
+    break
+  else:
+    print("That was amazing Fight! they're both standing!!")
+    round +=1
+
+time.sleep(0.7)
+os.system("clear")
+print(winner.upper(), "has won in", round, "rounds")
+print("""\33[1;32m▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+██░▄▄▄░██░██░██░▄▄░██░▄▄▄██░▄▄▀██
+██▄▄▄▀▀██░██░██░▀▀░██░▄▄▄██░▀▀▄██
+██░▀▀▀░██▄▀▀▄██░█████░▀▀▀██░██░██
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\33[0m""")
+time.sleep(1)
+print("///////////")
+time.sleep(1)
+print("//////////////////")
+time.sleep(1)
+print("////////////////////////")
+time.sleep(1)
+os.system("clear")
